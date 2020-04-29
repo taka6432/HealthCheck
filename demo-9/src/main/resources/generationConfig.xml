@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<generatorConfiguration>
+  <context id="MySQLTables" targetRuntime="MyBatis3">
+
+    <!-- スキーマ情報を取得する DB への接続設定 -->
+    <jdbcConnection driverClass="mysql.Driver"
+        connectionURL="jdbc:mysql://localhost/musical"
+        userId="taka6432"
+        password="1568">
+    </jdbcConnection>
+
+    <!-- SELECT 結果等を格納するドメインモデルを生成する設定 -->
+    <javaModelGenerator targetPackage="com.example.demo" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+   
+    <sqlMapGenerator targetPackage="com/example/demo/" targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    
+    <table schema="musical" tableName="product">
+      <property name="useActualColumnNames" value="true" />
+    </table>
+
+  </context>
+</generatorConfiguration>
