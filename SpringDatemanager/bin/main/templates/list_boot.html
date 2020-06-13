@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Starter Template for Bootstrap · Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="starter-template.css" rel="stylesheet">
+    <link href="../example.css" rel="stylesheet">
+  </head>
+<body style="padding-top:70px;">
+
+<div th:replace="~{block/header::headerA}"></div> 
+
+<main role="main" class="container">
+
+
+<h2>登録日付一覧</h2>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">日付id</th>
+      <th scope="col">日付名</th>
+      <th scope="col">基準日付</th>
+      <th scope="col">加減年</th>
+      <th scope="col">加減月</th>
+      <th scope="col">加減日</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <!-- 詳細リンク先は動的URLで作成 -->
+    <tr  th:each="date:${dateList}">
+      <th scope="row" th:text="${date.id}">1</th>
+		<td th:text="${date.date_name}">date_name</td>
+		<td th:text="${date.base_date}">base_date</td>
+		<td th:text="${date.diff_year}">diff_year</td>
+		<td th:text="${date.diff_month}">diff_month</td>
+		<td th:text="${date.diff_day}">diff_day</td>
+		<td><a th:href="@{/businessdate/dateDetail/{id}(id=${date.id})}">詳細</a></td>
+    </tr>
+  </tbody>
+</table>
+<p th:text="${message}">crud後のメッセージ</p>
+	<form method="post" action="/businessdate">
+		<input type="submit" name="back" value="戻る">
+	</form>
+
+</main><!-- /.container -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script>
+  window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery-slim.min.js"><\/script>')
+</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script><script src="/docs/4.4/assets/js/vendor/anchor.min.js"></script>
+<script src="/docs/4.4/assets/js/vendor/clipboard.min.js"></script>
+<script src="/docs/4.4/assets/js/vendor/bs-custom-file-input.min.js"></script>
+<script src="/docs/4.4/assets/js/src/application.js"></script>
+<script src="/docs/4.4/assets/js/src/search.js"></script>
+<script src="/docs/4.4/assets/js/src/ie-emulation-modes-warning.js"></script> 
+  </body>
+</html>

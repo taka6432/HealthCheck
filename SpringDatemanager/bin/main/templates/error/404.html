@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Error</title>
+</head>
+<body>
+    <h1 th:text="${status} + ' ' + ${error}"></h1>
+    <p th:text="${message}"></p>
+    <p>ホーム画面に戻ってください</p>
+	<a class="btn btn-secondary" th:href="@{/businessdate}" role="button">戻る</a>
+</body>
+</html>

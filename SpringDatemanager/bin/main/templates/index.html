@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+	<h2>計算の基準となる日付を入力してください。</h2>
+	<form action="#" method="post" th:action="@{/businessdate}" th:object="${dateForm}">
+		<input type="text" name="calc" th:field="*{base_date}"><br>
+		<input type="checkbox" name="diff_year" value="1" th:checked="*{diff_year}">来年
+		<input type="checkbox" name="diff_month" value="1" th:checked="*{diff_month}">来月
+		<input type="checkbox" name="diff_day" value="1" th:checked="*{diff_day}">月末
+		<button type="submit" name="calc">計算実行</button>
+	</form>
+	<form method="post" action="#" th:action="@{/businessdate/datelist}">
+		<button type="submit" name="list">一覧表示</button>
+	</form>
+	<form method="post" action="#" th:action="@{/businessdate}">
+		<table>
+			<tr>
+				<th>日付ID</th>
+				<th>日付名</th>
+				<th>計算結果</th>
+				<th>計算式</th>
+
+				<th>登録</th>
+			</tr>
+			<!-- dateFormに計算シミュ結果が格納されている場合のみ表示 -->
+			<div th:if="${not #strings.isEmpty(dateForm.date_name)}" th:object="${dateForm}">
+			<tr>
+				<td th:text="*{id}">日付ID</td>
+				<td th:text="*{date_name}" name="date_name">日付名</td>
+				<td th:text="*{calc_date}">計算結果</td>
+				<td th:text="|*{diff_year}/*{diff_month}/*{diff_day}|">計算式</td>
+				<td><input type="submit" name="insert" value="登録"></td>
+			</tr>
+			base_dateがvalidationに引っかかるのでformatする。
+			<input type="hidden" name="id" th:value="*{id}">
+			<input type="hidden" name="date_name" th:value="*{date_name}">
+			<input type="hidden" name="base_date" th:value="*{calc_date}">
+			<input type="hidden" name="diff_year" th:value="*{diff_year}">
+			<input type="hidden" name="diff_month" th:value="*{diff_month}">
+			<input type="hidden" name="diff_day" th:value="*{diff_day}">
+			</div> 
+		</table>
+	</form>
+</body>
+</html>

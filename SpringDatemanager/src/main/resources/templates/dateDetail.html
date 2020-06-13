@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>登録日付詳細</h1>
+	<form method="post" th:action="@{/businessdate/datelist}" th:object="${dateForm}">
+		<table>
+			<tr>
+				<th>日付ID</th>
+				<td><input type="text" th:field="*{id}" /></td>
+			</tr>
+			<tr>
+				<th>基準日時</th>
+				<td><input type="text" th:field="*{base_date}" /></td>
+			</tr>
+			<tr>
+				<th>日付名</th>
+				<td><input type="text" th:field="*{date_name}" /></td>
+			</tr>
+			<tr>
+				<th>加減年</th>
+				<td><input type="text" th:field="*{diff_year}" /></td>
+			</tr>
+			<tr>
+				<th>加減月</th>
+				<td><input type="text" th:field="*{diff_month}" /></td>
+			</tr>
+			<tr>
+				<th>加減月</th>
+				<td><input type="text" th:field="*{diff_day}" /></td>
+			</tr>
+		</table>
+		<button type="submit" name="delete">削除</button>
+		<button type="submit" name="update">更新</button>
+	</form>
+</body>
+</html>

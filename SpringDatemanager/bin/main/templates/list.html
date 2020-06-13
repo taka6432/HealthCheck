@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+	<h1>登録日一覧</h1>
+	<table>
+		<tr>
+			<th>日付id</th>
+			<th>日付名</th>
+			<th>基準日付</th>
+			<th>加減年</th>
+			<th>加減月</th>
+			<th>加減日</th>
+		</tr>
+		<!-- 詳細は動的URLを作成 -->
+		<tr th:each="date:${dateList}">
+			<td th:text="${date.id}">id</td>
+			<td th:text="${date.date_name}">date_name</td>
+			<td th:text="${date.base_date}">base_date</td>
+			<td th:text="${date.diff_year}">diff_year</td>
+			<td th:text="${date.diff_month}">diff_month</td>
+			<td th:text="${date.diff_day}">diff_day</td>
+			<td><a th:href="@{/businessdate/dateDetail/{id}(id=${date.id})}">詳細</a></td>
+		</tr>
+	</table>
+	<p th:text="${message}">crud後のメッセージ</p>
+	<form method="post" action="/businessdate">
+		<input type="submit" name="back" value="戻る">
+	</form>
+</body>
+</html>
